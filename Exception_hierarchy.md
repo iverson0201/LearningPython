@@ -1,3 +1,4 @@
+<pre>
 BaseException
  +-- SystemExit
  +-- KeyboardInterrupt
@@ -50,4 +51,4 @@ BaseException
 	   +-- ImportWarning
 	   +-- UnicodeWarning
 	   +-- BytesWarning
-
+</pre>
