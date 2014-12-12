@@ -24,13 +24,16 @@ def getHeader():
     
     username = 'username'
     password = 'xxxxxxxx'
+
     url = "http://api.minicloud.com.cn/statuses/friends_timeline.xml" #一个需要basic authentication验证的页面
+    #url = "http://www.baidu.com"
     user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
     headers = { 'User-agent' : user_agent }
     req = urllib2.Request(url, headers = headers)
 
     try:
         response = urllib2.urlopen(req)
+        print response.headers
     except IOError, e:
         pass
     else:
@@ -49,25 +52,24 @@ def getHeader():
     authline = e.headers['www-authenticate']
     print authline
     
-    #貌似作者的放的错误? 应该是再查查
-    #authobj = re.compile( \
-    #        r'''(?:\s*www-authentication\s*:)?\s*(\w*)\s+real=['"]([^'"]+)['"]''',\
-    #        re.IGNORECASE)#忽略大小写
-    #mathobj = authobj.match(authline)
+    authobj = re.compile( \
+            r'''(?:\s*www-authentication\s*:)?\s*(\w*)\s+realm=['"]([^'"]+)['"]''',\
+            re.IGNORECASE)#忽略大小写
+    mathobj = authobj.match(authline)
 
-    #if not mathobj:
-    #    #无法匹配返回头部有问题
-    #    print 'The authentication header is badly formed'
-    #    print authline
-    #    sys.exit(1)
+    if not mathobj:
+        #无法匹配返回头部有问题
+        print 'The authentication header is badly formed'
+        print authline
+        sys.exit(1)
 
-    ##获取头部的配置
-    #scheme = mathobj.group(1)
-    #realm = mathobj.group(2) 
+    #获取头部的配置
+    scheme = mathobj.group(1)
+    realm = mathobj.group(2) 
 
-    #if schemes.lower() != 'basic':
-    #    print 'this example only works with BASIC authentication'
-    #    sys.exit(1)
+    if schemes.lower() != 'basic':
+        print 'this example only works with BASIC authentication'
+        sys.exit(1)
 
     if authline.lower() != 'basic':
          print 'this example only works with BASIC authentication'
