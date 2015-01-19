@@ -48,10 +48,12 @@ def Getpage():
 
     book_result = re.search(book_match, my_url, re.S)
     
+    # 1 图书url 2 图书图片的url 3 图书描述 4 图书价格
     introduction_head = ur'.*<a href="(/gp/product.*?)"><img src="(http://ec4.*?)".*?alt="' 
     introduction_tail = ur'.*?</a>(.*?)<p><p><b>Kindle电子书价格.*?<span class="price">(.*?)</span>'
     introduction_match = ''
     for i in range(1, 5):
+        #print book_result.group(i)
         introduction_match += introduction_head
         introduction_match += book_result.group(i)
         introduction_match += introduction_tail
