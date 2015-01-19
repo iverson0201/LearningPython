@@ -80,7 +80,7 @@ def _format_addr(s):
 def send_to_me_mail(book):
 
     from_addr = "qianlv7@qq.com"
-    passwd = "xxxxxxx"
+    passwd = "xxxxxxxx"
     to_addr = "qianlv7@qq.com"
     stmp_server = "smtp.qq.com"
 
@@ -89,7 +89,7 @@ def send_to_me_mail(book):
         my_msg += u'<html><body>'
         for i in range(4):
             v = book[i]
-            msg_format = u'<a href="http://www.amazon.cn%s">%s</a><br/> <img src="%s"> <br/> Introdution:<br /> %s <br /> Price: %s <br /> <br />' % (v[1], v[0], v[2], v[3], v[4])
+            msg_format = u'<a href="http://www.amazon.cn%s">%s<br/> <img src="%s"> <br/></a>  Introdution:<br /> %s <br /> Price: %s <br /> <br />' % (v[1], v[0], v[2], v[3], v[4])
             my_msg += msg_format
         my_msg += u'</body></html>'
     else:
@@ -113,5 +113,4 @@ def send_to_me_mail(book):
 if __name__ == '__main__':
     result = Getpage()
     send_to_me_mail(result)
-
 
