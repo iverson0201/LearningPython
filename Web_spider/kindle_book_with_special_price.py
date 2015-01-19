@@ -80,7 +80,7 @@ def _format_addr(s):
 def send_to_me_mail(book):
 
     from_addr = "qianlv7@qq.com"
-    passwd = "houtodoxiao01"
+    passwd = "xxxxxxx"
     to_addr = "qianlv7@qq.com"
     stmp_server = "smtp.qq.com"
 
@@ -103,6 +103,8 @@ def send_to_me_mail(book):
 
     server = smtplib.SMTP(stmp_server, 25)
     server.set_debuglevel(1)
+    server.ehlo()
+    server.starttls()
     server.login(from_addr, passwd)
     server.sendmail(from_addr, [to_addr], msg.as_string())
     server.quit()
@@ -111,8 +113,5 @@ def send_to_me_mail(book):
 if __name__ == '__main__':
     result = Getpage()
     send_to_me_mail(result)
-
-
-
 
 
